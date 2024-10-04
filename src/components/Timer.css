@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+.container {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 95vh;
+  width: 100%;
+}
+
+.timer-container {
+  width: 134px;
+  height: 91px;
+  background: #a09ca9;
+  border-radius: 5px;
+}
+
+.text {
+  width: 134px;
+  height: 22px;
+  border-radius: 5px 5px 0px 0px;
+  margin: 0;
+  background: #07318d;
+}
+
+.text p {
+  margin: 0;
+  padding: 3px 0px;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  color: #ffffff;
+}
+
+.timer-overlay p {
+  margin: 0;
+  font-family: Roboto;
+  font-size: 57px;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.25px;
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-container button {
+  padding: 10px 20px; /* Adjust padding */
+  background-color: #07318d; /* Button background color */
+  color: #ffffff; /* Text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-family: Roboto; /* Font family */
+  font-size: 16px; /* Font size */
+  transition: background-color 0.3s; /* Smooth transition */
+  margin-top: 10px;
+}
+
+.button-container button:hover {
+  background-color: #0a4fbd; /* Darker shade on hover */
+}
+
+/* disable button styling */
+.button-container button:disabled {
+  background-color: #a09ca9;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
+.control-container {
+  display: flex;
+  flex-direction: column; /* Change to column for vertical alignment */
+  justify-content: center;
+  align-items: center;
+  height: 95vh;
+  width: 100%;
+}
