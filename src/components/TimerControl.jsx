@@ -2,11 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 
-const socket = io('https://timer-backend-1.onrender.com');
+const socket = io('http://localhost:3000');
 
 function TimerControl() {
   const [time, setTime] = useState(15);
-  const [isRunning, setIsRunning] = useState(false);
+  const [isRunning, setIsRunning] = useState(false); 
   const [isResetDisabled, setIsResetDisabled] = useState(true);
   const [uniqueId, setUniqueId] = useState('');
 
@@ -14,14 +14,15 @@ function TimerControl() {
     let storedId = localStorage.getItem('uniqueTimerId');
     if (storedId) {
       setUniqueId(storedId);
-      socket.emit('joinRoom', storedId); 
+      socket.emit('joinRoom', storedId);
+      socket.emit('resetTimer', storedId); 
     }
   }, []);
 
   const handleStartTimer = () => {
     setIsRunning(true);
     setIsResetDisabled(false);
-    socket.emit('startTimer', uniqueId); 
+    socket.emit('startTimer', uniqueId);
   };
 
   const handleResetTimer = () => {
@@ -40,8 +41,15 @@ function TimerControl() {
       }
     });
 
+    socket.on('timerStateUpdate', (state) => {
+      setTime(state.time);
+      setIsRunning(state.isRunning);
+      setIsResetDisabled(!state.isRunning && state.time === 15);
+    });
+
     return () => {
       socket.off('timerUpdate');
+      socket.off('timerStateUpdate');
     };
   }, [uniqueId]);
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import './Timer.css';
 
-const socket = io('https://timer-backend-1.onrender.com');
+const socket = io('http://localhost:3000');
 
 function Timer() {
   const [timer, setTimer] = useState(15);
@@ -16,7 +16,9 @@ function Timer() {
       localStorage.setItem('uniqueTimerId', storedId);
     }
     setUniqueId(storedId);
-    socket.emit('joinRoom', storedId); 
+    socket.emit('joinRoom', storedId);
+
+    socket.emit('resetTimer', storedId); 
   }, []);
 
   useEffect(() => {
@@ -44,3 +46,7 @@ function Timer() {
 }
 
 export default Timer;
+
+
+
+
