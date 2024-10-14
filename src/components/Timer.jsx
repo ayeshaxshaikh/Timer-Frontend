@@ -1,27 +1,19 @@
 
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
-import './Timer.css';
+import './Timer.css'; 
 
-const socket = io('https://timer-backend-2.onrender.com');
+const socket = io('http://localhost:3000');
 
 function Timer() {
+  const { uniqueId } = useParams(); 
   const [timer, setTimer] = useState(15);
-  const [uniqueId, setUniqueId] = useState('');
 
   useEffect(() => {
-    let storedId = localStorage.getItem('uniqueTimerId');
-    if (!storedId) {
-      storedId = `timer-${Math.random().toString(36).substr(2, 9)}-${Date.now()}`;
-      localStorage.setItem('uniqueTimerId', storedId);
-    }
-    setUniqueId(storedId);
-    socket.emit('joinRoom', storedId);
+    socket.emit('joinRoom', uniqueId);
+    socket.emit('resetTimer', uniqueId); 
 
-    socket.emit('resetTimer', storedId); 
-  }, []);
-
-  useEffect(() => {
     socket.on('timerUpdate', (newTime) => {
       setTimer(newTime);
     });
@@ -29,12 +21,12 @@ function Timer() {
     return () => {
       socket.off('timerUpdate');
     };
-  }, []);
+  }, [uniqueId]);
 
   return (
-    <div className='container'>
+    <div className="container">
       <div className="timer-container">
-        <div className='text'>
+        <div className="text">
           <p>Review Timer</p>
         </div>
         <div className="timer-overlay">
@@ -46,7 +38,3 @@ function Timer() {
 }
 
 export default Timer;
-
-
-
-

@@ -51,7 +51,7 @@
   align-items: center;
 }
 
-.button-container button {
+.button-container button , .create-btn{
   padding: 10px 20px; /* Adjust padding */
   background-color: #07318d; /* Button background color */
   color: #ffffff; /* Text color */
@@ -64,7 +64,7 @@
   margin-top: 10px;
 }
 
-.button-container button:hover {
+.button-container button:hover , .create-btn:hover {
   background-color: #0a4fbd; /* Darker shade on hover */
 }
 
@@ -82,4 +82,5 @@
   align-items: center;
   height: 95vh;
   width: 100%;
+  font-family: 'Roboto';
 }
