@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import io from 'socket.io-client';
 import './Timer.css'; 
 
-const socket = io('http://localhost:3000');
+const socket = io('https://drs-timer-backend.onrender.com');
 
 function Timer() {
   const { uniqueId } = useParams(); 

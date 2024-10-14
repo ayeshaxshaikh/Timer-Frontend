@@ -9,7 +9,7 @@ function TimerCreation() {
   const createTimer = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:3000/createTimer', {
+      const response = await fetch('https://drs-timer-backend.onrender.com/createTimer', {
         method: 'POST',
       });
 
